@@ -160,7 +160,7 @@ module Typus
 
     def detect_locales
       available_locales.each do |locale|
-        I18n.load_path += Dir[File.join(Typus.root, "config", "available_locales", "#{locale}*")]
+        I18n.load_path = Dir[File.join(Typus.root, "config", "available_locales", "#{locale}*")] + I18n.load_path
       end
     end
 
