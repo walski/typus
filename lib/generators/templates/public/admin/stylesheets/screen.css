@@ -226,6 +226,7 @@ fieldset.buttons { }
 #content table tr.odd:hover { background: #E4E4E4!important; }
 #content table tr.odd { background: #F3F3F3; }
 #content table td { border: none; padding: 5px; vertical-align: top; }
+#content table td.last { width: 100px; }
 
 /* @end */
 
