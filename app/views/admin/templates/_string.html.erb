@@ -1,7 +1,7 @@
 <%
 
   # Read only fields.
-  if @resource.typus_field_options_for(:read_only).to_s.include?(attribute)
+  if @resource.typus_field_options_for(:read_only).to_s.split(/[,\s+]/).include?(attribute)
     custom = { :readonly => 'readonly' }
     label_text << " <small>#{_t("Read only")}</small>"
   end
