@@ -12,14 +12,14 @@ module Admin
     def typus_form_has_many(field)
       setup_relationship(field)
 
-      @items_to_relate = @model_to_relate.where(@reflection.primary_key_name => nil) - @item.send(field)
+      @items_to_relate = @model_to_relate.where(@reflection.foreign_key => nil) - @item.send(field)
 
       if set_condition && @items_to_relate.any?
         form = build_relate_form
       end
 
       unless @reflection.through_reflection
-        foreign_key = @reflection.primary_key_name
+        foreign_key = @reflection.foreign_key
       end
 
       options = { foreign_key => @item.id }
@@ -155,7 +155,7 @@ module Admin
       back_to = url_for(:controller => params[:controller], :action => params[:action], :id => params[:id])
 
       related = @resource.reflect_on_association(attribute.to_sym).class_name.typus_constantize
-      related_fk = @resource.reflect_on_association(attribute.to_sym).primary_key_name
+      related_fk = @resource.reflect_on_association(attribute.to_sym).foreign_key
 
       if params[:action] == 'edit'
         options = { :resource => @resource.to_resource,

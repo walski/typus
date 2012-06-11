@@ -264,7 +264,7 @@ class Admin::ResourcesController < Admin::BaseController
       if resource
         @item.send(params[:resource]) << resource
       else
-        path = "#{params[:back_to]}?#{association.primary_key_name}=#{@item.id}"
+        path = "#{params[:back_to]}?#{association.foreign_key}=#{@item.id}"
       end
     when :polymorphic
       resource.send(@item.class.to_resource).create(params[@object_name])

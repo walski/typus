@@ -36,7 +36,7 @@ module Admin
       att_assoc = @resource.reflect_on_association(filter.to_sym)
       class_name = att_assoc.options[:class_name] || ((habtm) ? filter.classify : filter.capitalize.camelize)
       model = class_name.typus_constantize
-      related_fk = (habtm) ? filter : att_assoc.primary_key_name
+      related_fk = (habtm) ? filter : att_assoc.foreign_key
 
       params_without_filter = params.dup
       %w(controller action page).each { |p| params_without_filter.delete(p) }
